@@ -3,7 +3,6 @@ include('header.php');
 include('sidebar.php');
 ?>
 
-
 <div id="main-content">
 	<!-- Main Content Section with everything -->
 
@@ -19,8 +18,6 @@ include('sidebar.php');
 	<!-- Page Head -->
 	<h2>Welcome John</h2>
 	<p id="page-intro">What would you like to do?</p>
-
-
 
 	<div class="clear"></div> <!-- End .clear -->
 
@@ -214,7 +211,99 @@ include('sidebar.php');
 				<form action="#" method="post">
 
 					<fieldset>
-					<?php	include('addproducts.php');  ?>
+						<?php
+
+						include('addproducts.php');
+						if (isset($_POST['submit'])) {
+							///////////////images
+
+							echo "here is file name" . $file_name = $_FILES['file']['name'];
+							$file_tem_loc = $_FILES['file']['tmp_name'];
+							$file_store = "resources/images/" . $file_name;
+							if (move_uploaded_file($file_tem_loc, $file_store)) {
+								echo "upload=" . $file_name;
+							} else {
+								echo "error this image=" . $file_name;
+							}
+							////////////////images
+						}
+
+						?>
+
+						<form action="?" method="POST" enctype="multipart/form-data">
+
+							<div class="inputs">
+								<p>
+									<label for="name">Name: </label>
+								</p>
+								<p>
+									<input type="text" name="name" required>
+								</p>
+							</div>
+
+							<div class="inputs">
+								<p>
+									<label for="price">Price: </label>
+
+								</p>
+								<p>
+									<input type="text" name="price" required>
+								</p>
+							</div>
+
+							<div class="inputs">
+								<p>
+									<label>Uploading Image</label>
+								</p>
+								<p>
+									<input type="file" name="file">
+								</p>
+								<input type="hidden" name="image" value="<?php echo $file_name ?>">
+							</div>
+
+							<p>
+								<label>Category</label>
+								<select name="dropdown" class="small-input">
+									<option value="1">Men</option>
+									<option value="2">Women</option>
+									<option value="3">Kids</option>
+									<option value="4">Electronics</option>
+									<option value="5">Sports</option>
+								</select>
+							</p>
+
+							<p>
+								<label>Tags</label>
+								<input type="checkbox" name="tags[]" value="100" /> Fashion
+								<input type="checkbox" name="tags[]" value="101" /> Ecommerce
+								<input type="checkbox" name="tags[]" value="102" /> Shop
+								<input type="checkbox" name="tags[]" value="103" /> Hand Bag
+								<input type="checkbox" name="tags[]" value="104" /> Laptop
+								<input type="checkbox" name="tags[]" value="105" /> Headphone
+							</p>
+
+
+							<div class="inputs">
+								<p>
+									<label for="short_desc">Short Description: </label>
+
+								</p>
+								<p>
+									<input type="text" name="short_desc" required>
+								</p>
+							</div>
+
+
+							<p>
+								<label for="long_desc">long Description: </label>
+								<textarea class="text-input textarea wysiwyg" id="textarea" name="long_desc" cols="79" rows="15"></textarea>
+							</p>
+
+							<p>
+								<input type="submit" name="submit" value="submit">
+							</p>
+
+
 					</fieldset>
 
 					<div class="clear"></div><!-- End .clear -->
@@ -227,9 +316,7 @@ include('sidebar.php');
 
 	</div> <!-- End .content-box -->
 
-
 	<div class="clear"></div>
-
 
 	<!-- Start Notifications -->
 	<!--
