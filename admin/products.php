@@ -3,7 +3,6 @@ include('header.php');
 include('sidebar.php');
 ?>
 
-
 <div id="main-content">
 	<!-- Main Content Section with everything -->
 
@@ -19,8 +18,6 @@ include('sidebar.php');
 	<!-- Page Head -->
 	<h2>Welcome John</h2>
 	<p id="page-intro">What would you like to do?</p>
-
-
 
 	<div class="clear"></div> <!-- End .clear -->
 
@@ -53,7 +50,6 @@ include('sidebar.php');
 				</div>
 
 				<table>
-
 					<thead>
 						<tr>
 							<th><input class="check-all" type="checkbox" /></th>
@@ -63,7 +59,6 @@ include('sidebar.php');
 							<th>Column 4</th>
 							<th>Column 5</th>
 						</tr>
-
 					</thead>
 
 					<tfoot>
@@ -242,23 +237,45 @@ include('sidebar.php');
 
 						<p>
 							<label>Category</label>
-							<select name="dropdown" class="small-input">
-								<option value="1">Men</option>
-								<option value="2">Women</option>
-								<option value="3">Kids</option>
-								<option value="4">Electronics</option>
-								<option value="5">Sports</option>
-							</select>
+							<?php
+							include('config.php');
+
+							$sql = "SELECT * FROM categories";
+							$result = $conn->query($sql);
+							$option = '<select name="dropdown" class="small-input">';
+
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									$cid = $row["category_id"];
+									$cname = $row["name"];
+									$option .= '<option value=' . $cid . '>' . $cname . '</option>';
+								}
+							}
+							$option .= "</select>";
+							echo $option;
+							?>
 						</p>
 
 						<p>
 							<label>Tags</label>
-							<input type="checkbox" name="tags[]" value="100" /> Fashion
-							<input type="checkbox" name="tags[]" value="101" /> Ecommerce
-							<input type="checkbox" name="tags[]" value="102" /> Shop
-							<input type="checkbox" name="tags[]" value="103" /> Hand Bag
-							<input type="checkbox" name="tags[]" value="104" /> Laptop
-							<input type="checkbox" name="tags[]" value="105" /> Headphone
+							<?php
+							include('config.php');
+
+							$sql = "SELECT * FROM tags";
+							$result = $conn->query($sql);
+
+							if ($result->num_rows > 0) {
+								while ($row = $result->fetch_assoc()) {
+									$tid = $row["tag_id"];
+									$tname = $row["name"];
+									$checkbox .= '<input type="checkbox" name="tags[]" value=' . $tid . '>' . $tname;
+								}
+							}
+							$checkbox .= "</select>";
+							echo $checkbox;
+							?>
+
+
 						</p>
 
 						<div class="inputs">
