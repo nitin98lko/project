@@ -81,19 +81,19 @@ if (sizeof($errors) == 0) {
 
 
 
-      //$img = '<img name="image" src="admin/resources/productimage/' . $image . ' "> '; //getting image from array
+      $img = '<img name="image" src="admin/resources/productimage/' . $image . ' "> '; //getting image from array
 
       $html_showprod .= '
         <li>
                   <figure>
-                    <a class="aa-product-img" href="product-detail.php?id=' . $product_id . '"><img src="img/women/girl-1.png" alt="polo shirt img"></a>
+                    <a class="aa-product-img" href="product-detail.php?id=' . $product_id . '">'.$img.'</a>
 
                     <form id="form1" action="" method="POST"> 
                     
-                    <input name="name" type="text" name="set_tag" value="' . $name . '" >
-                    <input name="price" type="text" name="set_tag" value="' . $price . '" >
-                    <input name="image" type="text" name="set_tag" value="' . $image . '" >
-                    <input name="product_id" type="text" name="set_tag" value="' . $product_id . '" >
+                    <input name="name" type="hidden" name="set_tag" value="' . $name . '" >
+                    <input name="price" type="hidden" name="set_tag" value="' . $price . '" >
+                    <input name="image" type="hidden" name="set_tag" value="' . $image . '" >
+                    <input name="product_id" type="hidden" name="set_tag" value="' . $product_id . '" >
 
                     <button name="add_to_cart" class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</button>
 
@@ -145,27 +145,37 @@ if (isset($_POST['filter_price'])) {
         $price = '$' . $row["price"];
         $image = $row["image"];
 
-        //$img = '<img name="image" src="admin/resources/productimage/' . $image . ' "> '; //getting image from array
+        $img = '<img name="image" src="admin/resources/productimage/' . $image . ' "> '; //getting image from array
 
         $html_showprod .= '
-           <li>
-                     <figure>
-                       <a class="aa-product-img" href="#"><img src="img/women/girl-1.png" alt="polo shirt img"></a>
-                       <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-                       <figcaption>
-                         <h4 class="aa-product-title"><a href="#">' . $name . '</a></h4>
-                         <span class="aa-product-price">' . $price . '</span><span class="aa-product-price"><del>$65.50</del></span>
-                         <p class="aa-product-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam accusamus facere iusto, autem soluta amet sapiente ratione inventore nesciunt a, maxime quasi consectetur, rerum illum.</p>
-                       </figcaption>
-                     </figure>                         
-                     <div class="aa-product-hvr-content">
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-                       <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-                       <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                            
-                     </div>   
-                     <!-- product badge -->
-                     <span class="aa-badge aa-sale" href="#">SALE!</span>
-            </li>
+        <li>
+        <figure>
+          <a class="aa-product-img" href="product-detail.php?id=' . $product_id . '">'.$img.'</a>
+
+          <form id="form1" action="" method="POST"> 
+          
+          <input name="name" type="hidden" name="set_tag" value="' . $name . '" >
+          <input name="price" type="hidden" name="set_tag" value="' . $price . '" >
+          <input name="image" type="hidden" name="set_tag" value="' . $image . '" >
+          <input name="product_id" type="hidden" name="set_tag" value="' . $product_id . '" >
+
+          <button name="add_to_cart" class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</button>
+
+          </form>
+          <figcaption>
+            <h4 class="aa-product-title"><a href="#">' . $name . '</a></h4>
+            <span class="aa-product-price">' . $price . '</span><span class="aa-product-price"><del>$65.50</del></span>
+            <p class="aa-product-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam accusamus facere iusto, autem soluta amet sapiente ratione inventore nesciunt a, maxime quasi consectetur, rerum illum.</p>
+          </figcaption>
+        </figure>                         
+        <div class="aa-product-hvr-content">
+          <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+          <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+          <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                            
+        </div>   
+        <!-- product badge -->
+        <span class="aa-badge aa-sale" href="#">SALE!</span>
+</li>
            ';
       }
     } //if
@@ -176,13 +186,7 @@ if (isset($_POST['filter_price'])) {
     $errors[] = array('inputs' => 'forms', 'msg' => 'invalid login');
   }
 
-  echo "SETTING PRICE";
 } //if  isset-btn_set_price
-
-
-
-
-
 
 
 //////////////////////////////////DISPLAY PRODUCTS WITH ANY FILTER////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
