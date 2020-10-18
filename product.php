@@ -1,10 +1,7 @@
-<?php include('disp.php'); 
-
- include('addingcart.php'); 
-
- include('cartbox.php');
-
-  ?>
+<?php
+include('disp.php');
+include('addingcart.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -151,17 +148,17 @@
                   <span class="aa-cart-notify">
                     <!-- this will show the current number of products in the cart icon -->
                     <?php
-                 cartcount();
+                    cartcount();
                     ?>
                   </span>
                 </a>
                 <!--                 here hover the cart                -->
                 <div class="aa-cartbox-summary">
                   <ul>
-                  <?php 
-                  ///////////////////shows products in the cart on hovering icon/////////////////
-                  carticon_table();
-                   ?>
+                    <?php
+                    ///////////////////shows products in the cart on hovering icon/////////////////
+                    carticon_table();
+                    ?>
 
                   </ul>
                   <a class="aa-cartbox-checkout aa-primary-btn" href="#">Checkout</a>
@@ -369,7 +366,7 @@
             <div class="aa-product-catg-body">
               <ul class="aa-product-catg">
                 <?php
-                show();//////////////////////////////////display products//////////////////////////////////////////////////
+                show(); //////////////////////////////////display products//////////////////////////////////////////////////
                 ?>
               </ul>
               <!-- quick view modal -->
@@ -405,12 +402,10 @@
                             </div>
                           </div>
                         </div>
-                        <!-- Modal view content -->
+                        <!-- Modal hover view content -->
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="aa-product-view-content">
                             <h3>T-Shirt</h3>
-
-
                             <div class="aa-price-block">
                               <span class="aa-product-view-price">$34.99</span>
                               <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
@@ -488,7 +483,7 @@
             <div class="aa-sidebar-widget">
               <h3>Tags</h3>
               <div class="tag-cloud">
-               
+
                 <?php echo $show_tags; ?>
 
               </div>
@@ -601,7 +596,6 @@
     </div>
   </section>
   <!-- / product category -->
-
 
   <!-- Subscribe section -->
   <section id="aa-subscribe">
@@ -739,9 +733,6 @@
     </div><!-- /.modal-dialog -->
   </div>
 
-
-
-
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -762,7 +753,6 @@
   <script type="text/javascript" src="js/nouislider.js"></script>
   <!-- Custom js -->
   <script src="js/custom.js"></script>
-<?php datashow(); ?>
 
 </body>
 

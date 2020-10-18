@@ -1,7 +1,5 @@
 <?php
 include('addingcart.php');
-include('cartbox.php');
-
 
 ?>
 
@@ -557,8 +555,3 @@ include('cartbox.php');
 </body>
 
 </html>
-<?php
-datashow();
-
-
-?>

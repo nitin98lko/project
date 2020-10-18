@@ -1,26 +1,22 @@
 <?php
-
 include('admin/config.php');
- include('addingcart.php'); 
+include('addingcart.php');
 
-echo $product_id = $_GET['id']; // getting productId
+$product_id = $_GET['id']; // getting productId
+
 $errors = array();
 if (sizeof($errors) == 0) {
   $sql = "SELECT * FROM products 
   WHERE product_id='" . $product_id . "'  ";
   $result = $conn->query($sql);
-
   if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-
-
-
-      echo $name = $row["name"];
-      echo $price = $row["price"];
+      $name = $row["name"];
+      $price = $row["price"];
       echo $image = $row["image"];
-      echo $short_desc = $row["short_desc"];
-      echo $long_desc = $row["long_desc"];
+      $short_desc = $row["short_desc"];
+      $long_desc = $row["long_desc"];
     }
   } else {
     //echo "0 results";
@@ -28,10 +24,6 @@ if (sizeof($errors) == 0) {
   }
   $conn->close();
 }
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -75,9 +67,7 @@ if (sizeof($errors) == 0) {
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
 </head>
-
 <body>
   <!-- wpf loader Two -->
   <div id="wpf-loader-two">
@@ -89,7 +79,6 @@ if (sizeof($errors) == 0) {
   <!-- SCROLL TOP BUTTON -->
   <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
   <!-- END SCROLL TOP BUTTON -->
-
 
   <!-- Start header section -->
   <header id="aa-header">
@@ -141,7 +130,7 @@ if (sizeof($errors) == 0) {
                 <ul class="aa-head-top-nav-right">
                   <li><a href="account.html">My Account</a></li>
                   <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
+                  <li class="hidden-xs"><a href="cart.php">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                 </ul>
@@ -175,34 +164,17 @@ if (sizeof($errors) == 0) {
                 <a class="aa-cart-link" href="#">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">SHOPPING CART</span>
-                  <span class="aa-cart-notify">2</span>
+                  <span class="aa-cart-notify">
+                  <?php
+                  cartcount();
+                  ?>
+                  </span>
                 </a>
                 <div class="aa-cartbox-summary">
                   <ul>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-1.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
-                    <li>
-                      <span class="aa-cartbox-total-title">
-                        Total
-                      </span>
-                      <span class="aa-cartbox-total-price">
-                        $500
-                      </span>
-                    </li>
+                    <?php
+                    carticon_table();
+                    ?>
                   </ul>
                   <a class="aa-cartbox-checkout aa-primary-btn" href="#">Checkout</a>
                 </div>
@@ -384,12 +356,13 @@ if (sizeof($errors) == 0) {
           <div class="aa-product-details-area">
             <div class="aa-product-details-content">
               <div class="row">
-                <!-- Modal view slider -->
+                <!-- Modal hold slider -->
                 <div class="col-md-5 col-sm-5 col-xs-12">
                   <div class="aa-product-view-slider">
                     <div id="demo-1" class="simpleLens-gallery-container">
                       <div class="simpleLens-container">
-                        <div class="simpleLens-big-image-container"><a data-lens-image="img/view-slider/large/polo-shirt-1.png" class="simpleLens-lens-image"><img src="img/view-slider/medium/polo-shirt-1.png" class="simpleLens-big-image"></a></div>
+                        <div class="simpleLens-big-image-container"><a data-lens-image="admin/resources/productimage/<?php echo $image ?>" class="simpleLens-lens-image">
+                            <img src="admin/resources/productimage/<?php echo $image ?>" class="simpleLens-big-image"></a></div>
                       </div>
                       <div class="simpleLens-thumbnails-container">
                         <a data-big-image="img/view-slider/medium/polo-shirt-1.png" data-lens-image="img/view-slider/large/polo-shirt-1.png" class="simpleLens-thumbnail-wrapper" href="#">
@@ -449,10 +422,10 @@ if (sizeof($errors) == 0) {
 
                       <form id="form1" action="" method="POST">
 
-                        <input name="name" type="hidden"  value="<?php echo  $name ?>">
-                        <input name="price" type="hidden"  value="<?php echo  $price ?>">
-                      
-                        <input name="image" type="hidden"  value="<?php echo  $image ?>">
+                        <input name="name" type="hidden" value="<?php echo  $name ?>">
+                        <input name="price" type="hidden" value="<?php echo  $price ?>">
+
+                        <input name="image" type="hidden" value="<?php echo  $image ?>">
                         <input name="product_id" type="hidden" value="<?php echo  $product_id ?>">
 
                         <button name="add_to_cart" class="aa-add-to-cart-btn" href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</button>
@@ -945,4 +918,3 @@ if (sizeof($errors) == 0) {
 </body>
 
 </html>
-<?php datashow() ?>
