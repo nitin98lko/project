@@ -29,16 +29,13 @@ if (sizeof($errors) == 0) {
         <li>
                   <figure>
                     <a class="aa-product-img" href="product-detail.php?id=' . $product_id . '">' . $img . '</a>
-
                     <form id="form1" action="" method="POST"> 
                     
                     <input name="name" type="hidden" name="set_tag" value="' . $name . '" >
                     <input name="price" type="hidden" name="set_tag" value="' . $price . '" >
                     <input name="image" type="hidden" name="set_tag" value="' . $image . '" >
                     <input name="product_id" type="hidden" name="set_tag" value="' . $product_id . '" >
-
                     <button name="add_to_cart" class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</button>
-
                     </form>
                     <figcaption>
                       <h4 class="aa-product-title"><a href="#">' . $name . '</a></h4>
@@ -91,16 +88,13 @@ if (isset($_POST['filter_price'])) {
         <li>
         <figure>
           <a class="aa-product-img" href="product-detail.php?id=' . $product_id . '">' . $img . '</a>
-
           <form id="form1" action="" method="POST"> 
           
           <input name="name" type="hidden" name="set_tag" value="' . $name . '" >
           <input name="price" type="hidden" name="set_tag" value="' . $price . '" >
           <input name="image" type="hidden" name="set_tag" value="' . $image . '" >
           <input name="product_id" type="hidden" name="set_tag" value="' . $product_id . '" >
-
           <button name="add_to_cart" class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</button>
-
           </form>
           <figcaption>
             <h4 class="aa-product-title"><a href="#">' . $name . '</a></h4>
@@ -140,7 +134,6 @@ if ($result->num_rows > 0) {
     $show_cat .= '<form id="form1" action="" method="POST"> 
                   <input type="submit" name="filter_cat" value="' . $cname . '" > <br>
                   <input type="hidden" name="set_cat" value="' . $cid . '" >
-
                   </form>';
   }
 }
@@ -172,16 +165,13 @@ if (isset($_POST['filter_cat'])) {
         <li>
         <figure>
           <a class="aa-product-img" href="product-detail.php?id=' . $product_id . '">' . $img . '</a>
-
           <form id="form1" action="" method="POST"> 
           
           <input name="name" type="hidden" name="set_tag" value="' . $name . '" >
           <input name="price" type="hidden" name="set_tag" value="' . $price . '" >
           <input name="image" type="hidden" name="set_tag" value="' . $image . '" >
           <input name="product_id" type="hidden" name="set_tag" value="' . $product_id . '" >
-
           <button name="add_to_cart" class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</button>
-
           </form>
           <figcaption>
             <h4 class="aa-product-title"><a href="#">' . $name . '</a></h4>
@@ -219,10 +209,8 @@ if ($result->num_rows > 0) {
     $tname = $row["name"];
 
     $show_tags .= '<form id="form1" action="" method="POST"> 
-
                   <input type="submit" name="filter_tag" value="' . $tname . '" >
                   <input type="hidden" name="set_tag" value="' . $tid . '" >
-
                   </form>';
   }
 }
@@ -270,16 +258,13 @@ if (isset($_POST['filter_tag'])) {
         <li>
         <figure>
           <a class="aa-product-img" href="product-detail.php?id=' . $product_id . '">' . $img . '</a>
-
           <form id="form1" action="" method="POST"> 
           
           <input name="name" type="hidden" name="set_tag" value="' . $name . '" >
           <input name="price" type="hidden" name="set_tag" value="' . $price . '" >
           <input name="image" type="hidden" name="set_tag" value="' . $image . '" >
           <input name="product_id" type="hidden" name="set_tag" value="' . $product_id . '" >
-
           <button name="add_to_cart" class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</button>
-
           </form>
           <figcaption>
             <h4 class="aa-product-title"><a href="#">' . $name . '</a></h4>

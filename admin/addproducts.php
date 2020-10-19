@@ -1,6 +1,6 @@
 <?php
 include('config.php');
-
+$last_id = 1;
 $errors = array();
 $message = '';
 if (isset($_POST['submit'])) {
@@ -24,16 +24,15 @@ if (isset($_POST['submit'])) {
 
     $dropdown = $_POST['dropdown'];
 
-    $gettags = $_POST['tags'];
-    $intags = '';
-    foreach ($gettags as $keys => $values) {
-        $intags .= $values . ' ';
-    }
 
-    ///////////////////insert/////////////////////////////
+
+    ///////////////////insert in product table/////////////////////////////
     if (sizeof($errors) == 0) {
         $sql = "INSERT INTO products (category_id,name, price, image, short_desc, long_desc)VALUES ('" . $dropdown . "','" . $name . "', '" . $price . "', '" . $file_name . "', '" . $short_desc . "', '" . $long_desc . "')";
         if ($conn->query($sql) === TRUE) {
+            $last_id = $conn->insert_id;
+            $last_id;
+
             // $message = "New record created successfully";
         } else {
             $errors[] = array('inputs' => 'forms', 'msg' => $conn->error);
@@ -41,5 +40,22 @@ if (isset($_POST['submit'])) {
         }
     }
 
+    $gettags = $_POST['tags'];
+    $intags = '';
+    foreach ($gettags as $keys => $values) {
+        echo "tags=". $values;
+
+        ///////////////////insert in products_tags table/////////////////////////////
+        if (sizeof($errors) == 0) {
+            $sql = "INSERT INTO products_tags (product_id,tag_id)VALUES ('" . $last_id . "','" . $values . "')";
+            if ($conn->query($sql) === TRUE) {
+
+                // $message = "New record created successfully";
+            } else {
+                $errors[] = array('inputs' => 'forms', 'msg' => $conn->error);
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
+    } //foreach
     $conn->close();
 } //isset-submit

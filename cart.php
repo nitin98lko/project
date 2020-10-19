@@ -374,7 +374,7 @@ include('addingcart.php');
                   <tbody>
                     <tr>
                       <th>Subtotal</th>
-                      <td>$450</td>
+                      <td><?php total_amount(); ?></td>
                     </tr>
                     <tr>
                       <th>Total</th>

@@ -206,7 +206,9 @@ include('sidebar.php');
 
 			<div class="tab-content" id="tab2">
 
-				<?php include('addproducts.php');	?>
+				<?php include('addproducts.php');
+            echo "New record created successfully. Last inserted ID is: " . $last_id;
+			?>
 
 				<form action="?" method="POST" enctype="multipart/form-data">
 

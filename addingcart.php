@@ -32,7 +32,7 @@ if ($del_id != "") {
   $sql = "DELETE FROM cart WHERE id=$del_id";
 
   if ($conn->query($sql) === TRUE) {
-    echo "Record deleted successfully";
+    //echo "Record deleted successfully";
     $del_id = "";
   } else {
     echo "Error deleting record: " . $conn->error;
@@ -45,6 +45,8 @@ $sql = "SELECT * FROM cart";
 $result = $conn->query($sql);
 $errors = array();
 $cnt=0;
+$total=0;
+
 if (sizeof($errors) == 0) {
 
   if ($result->num_rows > 0) {
@@ -57,15 +59,18 @@ if (sizeof($errors) == 0) {
       $product_id = $row["id"];
       $image = $row["image"];
       $netprice = $row["netprice"];
-
+      $int_cast_netprice = (int)$netprice;
+      gettype($total);
+      $total=$total+$int_cast_netprice;
+      
       $cart_icontable .= '
       <li>
-        <a class="aa-cartbox-img" href="#"><img src="admin/resources/productimage/'.$image.'" alt="img"></a>
+        <a class="aa-cartbox-img" href="cart.php"><img src="admin/resources/productimage/'.$image.'" alt="img"></a>
         <div class="aa-cartbox-info">
         <h4><a href="#">' . $name . '</a></h4>
         <p>1 x $' . $price . '</p>
         </div>
-        <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
+        <a class="aa-remove-product" href="#?id='.$product_id.'"><span class="fa fa-times"></span></a>
       </li>
       ';
 
@@ -110,4 +115,10 @@ function cartcount()
 {
   global $cnt;
   echo $cnt;
+}
+
+function total_amount()
+{
+  global $total;
+  echo '$'.$total;
 }
